@@ -8,6 +8,8 @@ struct chip8_registers {
 	unsigned short I;
 	unsigned char DT;
 	unsigned char ST;
+	unsigned short PC;
+	unsigned char SP;
 };
 
 #endif // CHIP8_REGISTERS_H
