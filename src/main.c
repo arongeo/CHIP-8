@@ -1,15 +1,16 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include "chip8.h"
+#include <stdbool.h>
+
+const char keyboard_map[CHIP8_TOTAL_KEYS] = {
+	SDLK_0, SDLK_1, SDLK_2, SDLK_3, SDLK_4, SDLK_5,
+	SDLK_6, SDLK_7, SDLK_8, SDLK_9, SDLK_a, SDLK_b,
+	SDLK_c, SDLK_d, SDLK_e, SDLK_f
+};
 
 int main(int argc, char** argv) {
 	struct chip8 chip8;
-	chip8.registers.SP = 0;
-
-	chip8_stack_push(&chip8, 32);
-	chip8_stack_push(&chip8, 0xaa);
-	printf("%x\n", chip8_stack_pop(&chip8));
-	printf("%x\n", chip8_stack_pop(&chip8));
 
 	SDL_Init(SDL_INIT_EVERYTHING);
 	SDL_Window* window = SDL_CreateWindow(
@@ -33,11 +34,31 @@ int main(int argc, char** argv) {
 		r.h = 40;
 		SDL_RenderFillRect(renderer, &r);
 		SDL_RenderPresent(renderer);
-		SDL_Event e;
-		while (SDL_PollEvent(&e)) {
-			if (e.type == SDL_QUIT) {
-				quit = 1;
-			}
+		SDL_Event event;
+		while (SDL_PollEvent(&event)) {
+			switch(event.type) {
+				case SDL_QUIT:
+					quit = 1;
+				break;
+
+				case SDL_KEYDOWN: {
+					char key = event.key.keysym.sym;
+					int virtual_key = chip8_key_map(keyboard_map, key);
+					if (virtual_key != -1) {
+						chip8_key_down(&chip8.keyboard, virtual_key);
+					}	
+				}	
+				break;
+				
+				case SDL_KEYUP: {
+					char key = event.key.keysym.sym;
+					int virtual_key = chip8_key_map(keyboard_map, key);
+					if (virtual_key != -1) {
+						chip8_key_up(&chip8.keyboard, virtual_key);
+					}
+				}	
+				break;
+			};
 		}
 	}
 	SDL_DestroyWindow(window);
