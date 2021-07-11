@@ -22,4 +22,5 @@ const char chip8_def_char_set[] = {
 
 void chip8_init(struct chip8* chip8) {
 	memset(chip8, 0, sizeof(struct chip8));
+	memcpy(&chip8->memory.memory, chip8_def_char_set, sizeof(chip8_def_char_set));
 }

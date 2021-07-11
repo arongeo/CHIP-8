@@ -20,3 +20,5 @@ all: ${OBJECTS}
 clean:
 	rm -rf ./build/*
 	cp ./bin/placeholder.txt ./build/placeholder.txt
+	rm -rf ./bin/main
+	rm -rd ./bin/main.dSYM
