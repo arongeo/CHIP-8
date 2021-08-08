@@ -1,9 +1,13 @@
 INCLUDES = -I ./include
 FLAGS = -g
 
-OBJECTS=./build/chip8_memory.o ./build/chip8_stack.o ./build/chip8_keyboard.o ./build/chip8.o
+OBJECTS=./build/chip8_display.o ./build/chip8_memory.o ./build/chip8_stack.o ./build/chip8_keyboard.o ./build/chip8.o
+
 all: ${OBJECTS}
 	gcc ${FLAGS} $(INCLUDES) -lSDL2 ./src/main.c ${OBJECTS} -o ./bin/main
+
+./build/chip8_display.o:src/chip8_display.c
+	gcc ${FLAGS} ${INCLUDES} ./src/chip8_display.c -c -o ./build/chip8_display.o
 
 ./build/chip8_memory.o:src/chip8_memory.c
 	gcc ${FLAGS} ${INCLUDES} ./src/chip8_memory.c -c -o ./build/chip8_memory.o
