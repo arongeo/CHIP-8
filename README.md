@@ -10,19 +10,6 @@ It was widely used to create video games.
 
 To build the program you can use CMake or GNU Make.
 
-### CMake
-To build with CMake you will need to use these two commands, when you are in the project folder.
-
-```
-cmake .
-```
-
-```
-cmake --build .
-```
-
-After this you will find the binary executable in the /bin directory.
-
 ### GNU Make
 IMPORTANT If you already used CMake you can't use GNU Make to build this project unless you reinstall it.
 To build the project simply run:
@@ -36,3 +23,17 @@ To clean up the build and bin folders run:
 ```
 make clean
 ```
+
+### CMake
+To build with CMake you will need to use these two commands, when you are in the project folder.
+
+```
+cmake .
+```
+
+```
+cmake --build .
+```
+
+After this you will find the binary executable in the /bin directory.
+
