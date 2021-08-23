@@ -11,7 +11,7 @@ It was widely used to create video games.
 To build the program you can use CMake or GNU Make.
 
 ### GNU Make
-IMPORTANT If you already used CMake you can't use GNU Make to build this project unless you reinstall it.
+IMPORTANT: If you already used CMake you can't use GNU Make to build this project unless you reinstall it.
 To build the project simply run:
 
 ```
